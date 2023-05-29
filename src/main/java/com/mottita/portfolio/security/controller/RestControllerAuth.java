@@ -82,6 +82,7 @@ public class RestControllerAuth {
             dtoLogin.getUsername(), dtoLogin.getPassword()));
         SecurityContextHolder.getContext().setAuthentication(authentication);
         String token = this.jwtTokenProvider.generateToken(authentication);
-        return new ResponseEntity<>(new DtoAuthResponse(token), HttpStatus.OK);
+        return new ResponseEntity<>(new DtoAuthResponse(token, dtoLogin.getUsername(),
+                authentication.getAuthorities()), HttpStatus.OK);
     }
 }

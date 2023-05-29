@@ -72,38 +72,47 @@ public class PersonController {
     }
     
     @PostMapping (value = "newEdu/{idPer}", headers = "Accept=application/json")
-    public void addEducation (@PathVariable Long idPer, @RequestBody Education edu){
+    public Education addEducation (@PathVariable Long idPer, @RequestBody Education edu){
         Person per = this.personService.findPerson(idPer).get();
         per.addEducation(edu);
         this.personService.updatePerson(per);
+        per = this.personService.updatePerson(per);
+        return per.getEducations().get(per.getEducations().size() - 1);
     }
     
     @PostMapping (value = "newExp/{idPer}", headers = "Accept=application/json")
-    public void addExperience (@PathVariable Long idPer, @RequestBody Experience exp){
+    public Experience addExperience (@PathVariable Long idPer, @RequestBody Experience exp){
         Person per = this.personService.findPerson(idPer).get();
         per.addExperience(exp);
         this.personService.updatePerson(per);
+        per = this.personService.updatePerson(per);
+        return per.getExperiences().get(per.getExperiences().size() - 1);
     }
     
     @PostMapping (value = "newPro/{idPer}", headers = "Accept=application/json")
-    public void addProject (@PathVariable Long idPer, @RequestBody Project pro){
+    public Project addProject (@PathVariable Long idPer, @RequestBody Project pro){
         Person per = this.personService.findPerson(idPer).get();
         per.addProject(pro);
         this.personService.updatePerson(per);
+        per = this.personService.updatePerson(per);
+        return per.getProjects().get(per.getProjects().size() - 1);
     }
     
     @PostMapping (value = "newServ/{idPer}", headers = "Accept=application/json")
-    public void addService (@PathVariable Long idPer, @RequestBody PService ser){
+    public PService addService (@PathVariable Long idPer, @RequestBody PService ser){
         Person per = this.personService.findPerson(idPer).get();
         per.addPService(ser);
-        this.personService.updatePerson(per);
+        per = this.personService.updatePerson(per);
+        return per.getPservices().get(per.getPservices().size() - 1);
     }
     
     @PostMapping (value = "newSkill/{idPer}", headers = "Accept=application/json")
-    public void addSkill (@PathVariable Long idPer, @RequestBody Skill ski){
+    public Skill addSkill (@PathVariable Long idPer, @RequestBody Skill ski){
         Person per = this.personService.findPerson(idPer).get();
         per.addSkill(ski);
         this.personService.updatePerson(per);
+        per = this.personService.updatePerson(per);
+        return per.getSkills().get(per.getSkills().size() - 1);
     }
     
     @PutMapping (value = "updateHome/{id}", headers = "Accept=application/json")

@@ -66,7 +66,7 @@ public class SecurityConfig {
                 .requestMatchers(HttpMethod.POST, "/api/crud/**").hasAuthority("ADMIN")
                 .requestMatchers(HttpMethod.GET, "/api/crud/**").hasAnyAuthority("ADMIN", "USER")
                 .requestMatchers(HttpMethod.PUT, "/api/crud/**").hasAuthority("ADMIN")
-                .requestMatchers(HttpMethod.DELETE, "api/crud/**").hasAuthority("ADMIN")
+                .requestMatchers(HttpMethod.DELETE, "/api/crud/**").hasAuthority("ADMIN")
                 .anyRequest().authenticated() //cualquier solicitud que no esta arriba debe ser autenticado
                 .and() //concatena otro filtro
                 .cors()

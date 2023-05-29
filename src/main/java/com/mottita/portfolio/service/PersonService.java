@@ -29,8 +29,8 @@ public class PersonService {
         this.perRepo.save(per);
     }
     
-    public void updatePerson(Person per){
-        this.perRepo.save(per);
+    public Person updatePerson(Person per){
+        return this.perRepo.save(per);
     }
 
     public void deletePerson(Long id) {
