@@ -45,6 +45,18 @@ public class RestControllerAuth {
         this.jwtTokenProvider = jwtTokenProvider;
     }
     
+    //Metodo para agregar un rol
+    @PostMapping("role")
+    public ResponseEntity<String> role(@RequestBody Role aRole){
+        if (this.iRoleRepository.existsByName(aRole.getName())){
+            return new ResponseEntity<>("Role already exist", HttpStatus.BAD_REQUEST);
+        }
+        Role rol = new Role();
+        rol.setName(aRole.getName());
+        this.iRoleRepository.save(rol);
+        return new ResponseEntity<>("Role created", HttpStatus.OK);
+    }
+    
     //Metodo para poder registrar usuarios con rol user
     @PostMapping("Register")
     public ResponseEntity<String> register(@RequestBody DtoRegister dtoRegister){
